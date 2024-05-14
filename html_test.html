@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Piano Roll</title>
+    <style>
+      .piano-key {
+        width: 50px;
+        height: 100px;
+        background-color: white;
+        border: 1px solid black;
+        float: left;
+        cursor: ew-resize;
+        /* Horizontal resize cursor */
+      }
+
+      .black-key {
+        background-color: black;
+        width: 30px;
+        height: 60px;
+        margin-left: -15px;
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="black-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+    <div class="piano-key"></div>
+
+    <script>
+      let isResizing = false;
+      let initialWidth;
+      let initialMousePosition;
+      let resizingKey;
+
+      function extendWidthOnMouseDown(event) {
+        isResizing = true;
+        resizingKey = event.target;
+        initialWidth = resizingKey.offsetWidth;
+        initialMousePosition = event.clientX;
+      }
+
+      function onMouseMove(event) {
+        if (!isResizing) return;
+
+        const mouseDeltaX = event.clientX - initialMousePosition;
+        const newWidth = initialWidth + mouseDeltaX;
+        resizingKey.style.width = newWidth + 'px';
+      }
+
+      function onMouseUp() {
+        isResizing = false;
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+
+      const keys = document.querySelectorAll('.piano-key, .black-key');
+      keys.forEach(key => {
+        key.addEventListener('mousedown', extendWidthOnMouseDown);
+      });
+    </script>
+
+  </body>
+</html>

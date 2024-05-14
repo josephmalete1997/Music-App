@@ -1,0 +1,144 @@
+.piano-roll {
+  width: 800px;
+  border: 4px solid var(--border-color);
+  margin: 50px;
+  border-radius: 5px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.piano-roll:hover {
+  border: 4px solid white;
+}
+
+.piano-roll .keys {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 200;
+}
+
+.piano-roll .line {
+  width: 4px;
+  height: 110%;
+  background: rgb(255, 26, 26);
+  position: absolute;
+  left: 72px;
+  z-index: 100;
+}
+
+.piano-roll .line::before {
+  width: 10px;
+  height: 10px;
+  background: rgb(255, 26, 26);
+  position: absolute;
+  left: 72px;
+  z-index: 10;
+}
+
+.piano-roll .piano-bars {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  position: relative;
+}
+
+.piano-roll .piano-bars .piano-bar {
+  height: 20px;
+  width: 100%;
+  border: 1px solid rgb(112, 112, 112);
+  display: flex;
+  position: relative;
+}
+
+.piano-roll .piano-bars .piano-bar .roll {
+  height: 20px;
+  width: 20px;
+  border: 1px solid rgb(22, 22, 22);
+  display: flex;
+  position: relative;
+}
+
+.new-roll {
+  background: linear-gradient(rgb(52, 55, 255),
+      rgb(97, 85, 255),
+      rgb(23, 21, 155));
+  position: absolute;
+}
+
+.new-roll.hit::before {
+  content: "";
+  display: block;
+  height: 20px;
+  width: inherit;
+  background: linear-gradient(rgb(69, 218, 0), #6fff62, rgb(21, 155, 61));
+  border: 0px solid rgb(0, 0, 0);
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.new-roll:hover {
+  cursor: ew-resize;
+  background: linear-gradient(rgb(128, 130, 255),
+      rgb(128, 119, 255),
+      rgb(57, 55, 177));
+}
+
+.left-panel {
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  width: auto;
+  height: 20px;
+  border: 1px solid #000;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.white {
+  background-color: #fff;
+  text-align: end;
+  padding-right: 10px;
+}
+
+.black {
+  background-color: #000;
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: end;
+  font-size: 12px;
+  padding-right: 10px;
+}
+
+/* .black::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 100px;
+  background-color: #000;
+  /* transform: translateY(-50%); */
+
+#debug {
+  color: white;
+}

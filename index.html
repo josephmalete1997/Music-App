@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/piano_roll.css" />
+    <link
+      rel="stylesheet"
+      href="./fontawesome-free-6.5.1-web/css/all.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/062d0051ac.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Compose music</title>
+  </head>
+  <body>
+    <main>
+      <div class="timeline">
+        <div class="timeline-ruler"></div>
+        <button id="add-track">
+          <i class="fa-solid fa-plus"></i> Add track
+        </button>
+      </div>
+      <div class="top-tool">
+        <label for="tempo-input">BPM:</label>
+        <input
+          type="number"
+          id="tempo-select"
+          min="1"
+          max="300"
+          placeholder="BPM"
+          required
+        />
+
+        <select id="bar-select">
+          <option value="24">16</option>
+          <option value="24">16</option>
+          <option value="32">32</option>
+        </select>
+        <button class="add-instrument play" id="Preview">
+          <i class="fa-solid fa-play"></i> Play
+        </button>
+        <button class="add-instrument stop" id="stop-preview">
+          <i class="fa-solid fa-pause"></i> Pause
+        </button>
+        <button class="add-instrument reset" id="reset-preview">
+          <i class="fa-solid fa-backward"></i>
+        </button>
+        <button class="add-instrument undo">
+          <i class="fa-solid fa-arrow-rotate-left"></i>Undo
+        </button>
+        <button class="add-instrument redo">
+          Redo<i class="fa-solid fa-arrow-rotate-right"></i>
+        </button>
+      </div>
+      <div class="piano-roll">
+        <div class="keys">
+          <div class="key white" data-note="C">C</div>
+          <div class="key black C-sharp" data-note="C#">C#</div>
+          <div class="key white" data-note="D">D</div>
+          <div class="key black D-sharp" data-note="D#">D#</div>
+          <div class="key white" data-note="E">E</div>
+          <div class="key white" data-note="F">F</div>
+          <div class="key black F-sharp" data-note="F#">F#</div>
+          <div class="key white" data-note="G">G</div>
+          <div class="key black G-sharp" data-note="G#">G#</div>
+          <div class="key white" data-note="A">A</div>
+          <div class="key black A-sharp" data-note="A#">A#</div>
+          <div class="key white" data-note="B">B</div>
+        </div>
+        <div class="piano-bars"><div class="line"></div></div>
+      </div>
+    </main>
+    <script src="js/main.js"></script>
+    <script src="js/piano.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.body.addEventListener("contextmenu", function (e) {
+          const options = document.querySelectorAll(".option-list");
+          const trackName = e.target.closest(".track-name");
+
+          if (!trackName) {
+            options.forEach((option) => {
+              if (option.style.display === "block") {
+                option.style.display = "none";
+              }
+            });
+            e.preventDefault();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
